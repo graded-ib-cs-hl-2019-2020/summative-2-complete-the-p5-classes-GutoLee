@@ -6,8 +6,8 @@ export class Bubble {
     private xSpeed: number = random(-3, 3);
     private ySpeed: number = random(-3, 3);
     private stopped: boolean = false;
-    private color: string = "blue";
-    private borderColor: string = "grey";
+    private color: string = "white";
+    private borderColor: string = "black";
 
     // make color and borderColor parameters
 

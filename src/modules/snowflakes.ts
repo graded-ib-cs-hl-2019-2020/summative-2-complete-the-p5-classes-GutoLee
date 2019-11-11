@@ -5,8 +5,7 @@ export class Snowflake {
     private xSpeed: number = random(-3, 3);
     private ySpeed: number = random(-3, 3);
     private stopped: boolean = false;
-    private color: string = "blue";
-    private borderColor: string = "grey";
+    private color: string = "white";
 
     /* TODO REQUIRED - Make this work.
     The snowflakes should drift slowly downward. I have implemented only the draw() method.
@@ -46,7 +45,7 @@ export class Snowflake {
     }
 
     private onYEdge(): boolean {
-        if (this.y - (this.size / 2) >= 480) {
+        if (this.y - (this.size / 2) >= 750) {
             return true;
         } else {
             return false;

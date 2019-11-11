@@ -6,7 +6,7 @@ export class Ball {
   private xSpeed: number = random(-3, 3);
   private ySpeed: number = random(-3, 3);
   private stopped: boolean = false;
-  private color: string = "red";
+  private color: string = this.get_rand_color();
   private borderColor: string = "black";
 
   // make color and borderColor parameters
@@ -15,6 +15,11 @@ export class Ball {
     this.x = x;
     this.y = y;
     this.size = size;
+  }
+
+  public get_rand_color() {
+    let color = Math.floor(Math.random() * 16777216).toString(16);
+    return "#000000".slice(0, -color.length) + color;
   }
 
   public stop() {
