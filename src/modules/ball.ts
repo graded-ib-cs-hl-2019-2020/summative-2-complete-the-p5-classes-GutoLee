@@ -9,10 +9,12 @@ export class Ball {
   private color: string = "red";
   private borderColor: string = "black";
 
-  /* TODO REQUIRED - add accessors and mutators for x, y, size, color, and borderColor */
+  // make color and borderColor parameters
+
   constructor(x: number, y: number, size: number) {
-    /* TODO REQUIRED = Build your constructor */
-    /* TODO OPTIONAL - add optional parameters to set color and borderColor on creation of the object */
+    this.x = x;
+    this.y = y;
+    this.size = size;
   }
 
   public stop() {

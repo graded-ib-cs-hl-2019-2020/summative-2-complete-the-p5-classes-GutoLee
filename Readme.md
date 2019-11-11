@@ -2,7 +2,7 @@
 
 There are four typescript files included in this project - `index.ts`, `ball.ts`, `bubble.ts`, and `snowflake.ts`. You will need to complete all four of them to get this project working.
 
-When it works, it should look like this: https://graded-cs-resources.github.io/lesson_07_complete_the_p5_project/ . But you'll have to fix a lot of things to get it to work!
+When it works, it should look like this: https:/ /graded-cs-resources.github.io/lesson_07_complete_the_p5_project/ . But you'll have to fix a lot of things to get it to work!
 
 ## Getting your code
 
