@@ -1,15 +1,16 @@
 
 export class Ball {
+
   private x: number;
   private y: number;
   private size: number;
   private xSpeed: number = random(-3, 3);
   private ySpeed: number = random(-3, 3);
   private stopped: boolean = false;
+  private speedUp: boolean = false;
   private color: string = this.get_rand_color();
   private borderColor: string = "black";
-
-  // make color and borderColor parameters
+  private iAmSpeed = document.getElementById("speedup") as HTMLAudioElement;
 
   constructor(x: number, y: number, size: number) {
     this.x = x;
@@ -17,6 +18,7 @@ export class Ball {
     this.size = size;
   }
 
+  // random color generator; taken from the interwebs
   public get_rand_color() {
     let color = Math.floor(Math.random() * 16777216).toString(16);
     return "#000000".slice(0, -color.length) + color;
@@ -30,6 +32,31 @@ export class Ball {
     this.stopped = false;
   }
 
+  public oneClick() {
+    this.speedUp = false;
+  }
+
+  public twoClick() {
+    this.speedUp = true;
+    this.xSpeed = random(-0.1, 0.1);
+    this.ySpeed = random(-0.1, 0.1);
+    this.iAmSpeed.play();
+  }
+
+  public moveAfterFreeze() {
+    if (this.speedUp == true) {
+      if (this.xSpeed <= 30 && this.xSpeed >= -30) {
+        this.xSpeed = this.xSpeed * 1.004;
+      }
+      if (this.ySpeed <= 30 && this.ySpeed >= -30) {
+        this.ySpeed = this.ySpeed * 1.004;
+      }
+      this.x = this.x + this.xSpeed;
+      this.y = this.y + this.ySpeed;
+    }
+    this.doBorderBehavior();
+  }
+
   public draw(): void {
     fill(this.color);
     stroke(this.borderColor);
@@ -40,8 +67,8 @@ export class Ball {
     if (this.stopped == false) {
       this.x = this.xSpeed + this.x;
       this.y = this.ySpeed + this.y;
-      this.doBorderBehavior();
     }
+    this.doBorderBehavior();
   }
 
   public distFromMouse(): number {
@@ -52,7 +79,6 @@ export class Ball {
     return this.distFromMouse() < this.size / 2;
   }
 
-  /* This border behavior implements a bounce */
   private doBorderBehavior() {
     if (this.x < this.size / 2) {
       this.x = this.size / 2;

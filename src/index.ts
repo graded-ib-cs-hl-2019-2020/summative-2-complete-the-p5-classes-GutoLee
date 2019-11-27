@@ -22,10 +22,11 @@
     For an Accomplished, some optional requirements or embellishments are
     required or the code must be particularly beautiful
     For an Exemplary, I would expect all optional requirements to be implemented,
-    or additional features of similar or greter
+    or additional features of similar or greqter
         difficulty.
 */
 
+import { AUDIO } from "p5";
 import { Ball } from "./modules/ball.js";
 import { Bubble } from "./modules/bubble.js";
 import { Snowflake } from "./modules/snowflakes.js";
@@ -33,22 +34,22 @@ import { Snowflake } from "./modules/snowflakes.js";
 let balls: Ball[] = [];
 let bubbles: Bubble[] = [];
 let snowflakes: Snowflake[] = [];
-let clickedIndex = -1;
+let timesClicked: number = 0;
 
 function setup() {
     let numBalls = 10;
-    let numBubbles = 10;
-    let numFlakes = 10;
+    let numBubbles = 15;
+    let numFlakes = 30;
     createCanvas(1425, 750);
+
     for (let i = 0; i < numBalls - 1; i++) {
         balls[i] = new Ball(random(25, width - 25), random(25, height - 25), random(10, 50));
-        /* TODO OPTIONAL - make the balls a random color */
     }
     for (let i = 0; i < numBubbles - 1; i++) {
         bubbles[i] = new Bubble(random(25, width - 25), random(25, height - 25), random(10, 50));
     }
     for (let i = 0; i < numFlakes - 1; i++) {
-        snowflakes[i] = new Snowflake(random(25, width - 25), random(25, height - 25), random(10, 50));
+        snowflakes[i] = new Snowflake(random(25, width - 25), random(25, height - 25), random(20, 30));
     }
 }
 
@@ -57,24 +58,48 @@ function draw() {
     for (let i = 0; i < balls.length - 1; i++) {
         balls[i].draw();
         balls[i].move();
+        balls[i].moveAfterFreeze();
     }
     for (let i = 0; i < bubbles.length - 1; i++) {
-
         bubbles[i].draw();
         bubbles[i].move();
-        /* TODO REQUIRED - Draw and move the bubbles and flakes */
+        bubbles[i].moveAfterFreeze();
     }
     for (let i = 0; i < snowflakes.length - 1; i++) {
-
-        snowflakes[i].move();
         snowflakes[i].draw();
+        snowflakes[i].move();
+        snowflakes[i].moveAfterFreeze();
     }
 }
-/* TODO OPTIONAL - add a function mousePressed() that either stops or starts objects from moving
-   if the mouse is pressed while it is touching them. So you could use this (if careful!) to stop all of the
-   objects from moving then start them back up again. The Ball class has some helper functions that will
-   help you with this, but you'll need to add them to the other classes.
-*/
+
+function mousePressed() {
+    timesClicked = timesClicked + 1;
+
+    for (let i = 0; i < balls.length - 1; i++) {
+        balls[i].stop();
+        if (timesClicked % 2 == 0) {
+            balls[i].twoClick();
+        } else {
+            balls[i].oneClick();
+        }
+    }
+    for (let i = 0; i < bubbles.length - 1; i++) {
+        bubbles[i].stop();
+        if (timesClicked % 2 == 0) {
+            bubbles[i].twoClick();
+        } else {
+            bubbles[i].oneClick();
+        }
+    }
+    for (let i = 0; i < snowflakes.length - 1; i++) {
+        snowflakes[i].stop();
+        if (timesClicked % 2 == 0) {
+            snowflakes[i].twoClick();
+        } else {
+            snowflakes[i].oneClick();
+        }
+    }
+}
 
 // do not edit the below lines
 window.draw = draw;
