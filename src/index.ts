@@ -22,11 +22,10 @@
     For an Accomplished, some optional requirements or embellishments are
     required or the code must be particularly beautiful
     For an Exemplary, I would expect all optional requirements to be implemented,
-    or additional features of similar or greqter
+    or additional features of similar or greater
         difficulty.
 */
 
-import { AUDIO } from "p5";
 import { Ball } from "./modules/ball.js";
 import { Bubble } from "./modules/bubble.js";
 import { Snowflake } from "./modules/snowflakes.js";

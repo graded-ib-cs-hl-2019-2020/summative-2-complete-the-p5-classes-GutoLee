@@ -54,13 +54,6 @@ export class Snowflake {
             this.doBorderBehavior();
         }
     }
-    public distFromMouse(): number {
-        return dist(this.x, this.y, mouseX, mouseY);
-    }
-
-    public touchingMouse(): boolean {
-        return this.distFromMouse() < this.size / 2;
-    }
 
     private doBorderBehavior() {
         if (this.onYEdge()) {

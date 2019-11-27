@@ -8,7 +8,7 @@ export class Ball {
   private ySpeed: number = random(-3, 3);
   private stopped: boolean = false;
   private speedUp: boolean = false;
-  private color: string = this.get_rand_color();
+  private color: string = this.getRandColor();
   private borderColor: string = "black";
   private iAmSpeed = document.getElementById("speedup") as HTMLAudioElement;
 
@@ -19,7 +19,7 @@ export class Ball {
   }
 
   // random color generator; taken from the interwebs
-  public get_rand_color() {
+  public getRandColor() {
     let color = Math.floor(Math.random() * 16777216).toString(16);
     return "#000000".slice(0, -color.length) + color;
   }
@@ -69,14 +69,6 @@ export class Ball {
       this.y = this.ySpeed + this.y;
     }
     this.doBorderBehavior();
-  }
-
-  public distFromMouse(): number {
-    return dist(this.x, this.y, mouseX, mouseY);
-  }
-
-  public touchingMouse(): boolean {
-    return this.distFromMouse() < this.size / 2;
   }
 
   private doBorderBehavior() {
